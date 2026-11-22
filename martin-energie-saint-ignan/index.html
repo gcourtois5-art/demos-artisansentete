@@ -69,11 +69,12 @@ details{border-bottom:1px solid #e6e8ec;padding:1.1rem 0}
 summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:1rem}
 summary::after{content:"+";color:var(--accent);font-size:1.4rem;line-height:1;transition:transform .25s;filter:brightness(.85)}
 details[open] summary::after{transform:rotate(45deg)}details p{color:var(--gris);margin-top:.6rem}
-.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.5rem}
 form{display:grid;gap:.9rem;background:#fff;border:1px solid #eceef2;border-radius:22px;padding:2rem;box-shadow:0 18px 40px rgba(16,24,40,.07)}
+form{grid-template-columns:minmax(0,1fr)}form>*{min-width:0;max-width:100%;box-sizing:border-box}
 input,select,textarea{font:inherit;padding:.85rem 1rem;border:1.5px solid #e3e6eb;border-radius:12px;outline:none;transition:border-color .2s}
 input:focus,select:focus,textarea:focus{border-color:var(--accent)}
-.infos li{list-style:none;display:flex;gap:.8rem;padding:.8rem 0;border-bottom:1px solid #eef0f3;color:var(--gris)}.infos b{color:var(--txt);min-width:110px}
+.infos li{list-style:none;display:flex;gap:.8rem;padding:.8rem 0;border-bottom:1px solid #eef0f3;color:var(--gris)}.infos b{color:var(--txt);min-width:110px}.infos li{flex-wrap:wrap}.infos li>*{min-width:0;overflow-wrap:anywhere}
 footer{background:var(--fond);color:rgba(255,255,255,.7);padding:2.2rem 0;font-size:.9rem}
 footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .appel{position:fixed;right:18px;bottom:18px;z-index:30;display:none}
@@ -101,14 +102,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .parcours{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
 .reveal.vu{opacity:1;transform:none}
-@media (max-width:860px){.liens a:not(.btn){display:none}.hero .wrap,.avis,.contact .wrap,.pq,.parcours{grid-template-columns:1fr}.visuel{display:none}
+@media (max-width:860px){.contact .wrap{grid-template-columns:minmax(0,1fr)}.liens a:not(.btn){display:none}.hero .wrap,.avis,.pq,.parcours{grid-template-columns:1fr}.visuel{display:none}
 .stats .wrap{grid-template-columns:1fr}.appel{display:inline-flex}section{padding:4rem 0}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
 <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 </head>
 <body>
-<div class="bandeau">Démo réalisée par <b>Artisans en tête</b> pour Martin Energie · photos, avis et coordonnées issus de vos pages publiques</div>
+<div class="bandeau">Démo réalisée par <b>Artisans en tête</b> pour Martin Energie · photos, avis et coordonnées issus de vos pages publiques · textes et engagements : contenu d'exemple à valider</div>
 <header id="haut"><div class="wrap nav">
   <a class="logo" href="#"><span>ME</span>Martin Energie</a>
   <nav class="liens"><a href="#services">Prestations</a><a href="#realisations">Réalisations</a><a href="#avis">Avis</a><a href="#zone">Zone</a><a href="#faq">FAQ</a><a class="btn" href="tel:+33621390065">Appeler</a></nav>
@@ -155,7 +156,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
   </div>
 </div></section>
 
-<section id="avis"><div class="wrap"><div class="titre reveal"><small>Avis Google</small><h2>Ce que disent ses clients</h2></div><div class="resume reveal"><b>5</b><div><div class="e">★★★★★</div>1 avis vérifiés sur Google</div></div><div class="ga"><article class="reveal"><div class="e">★★★★★</div><p>« Super travail plombier au top.Travail très propre fait rapidement.Je recommande!! »</p><small>loucas riou-danieli</small> <span style="color:var(--gris);font-size:.8rem">· il y a un an</span></article></div></div></section>
+<section id="avis"><div class="wrap"><div class="titre reveal"><small>Avis Google</small><h2>Ce que disent ses clients</h2></div><div class="resume reveal"><b>5</b><div><div class="e">★★★★★</div>1 avis vérifié sur Google</div></div><div class="ga"><article class="reveal"><div class="e">★★★★★</div><p>« Super travail plombier au top.Travail très propre fait rapidement.Je recommande!! »</p><small>loucas riou-danieli</small> <span style="color:var(--gris);font-size:.8rem">· il y a un an</span></article></div></div></section>
 
 <section style="background:var(--clair)"><div class="wrap parcours"><div class="reveal"><div class="titre"><small>Visibilité</small><h2>Quand on cherche « plombier Saint-Ignan », vous apparaissez</h2></div><p style="color:var(--gris)">Recherche Google → fiche Google → votre site → un appel. Ce site est pensé pour transformer les recherches locales en demandes de devis.</p></div><div class="serp reveal"><div class="q">🔍 plombier saint-ignan</div><div class="r moi"><span>Martin Energie</span><span><em>★</em> 5</span></div><div class="r"><span>Concurrent A</span><span>…</span></div><div class="r"><span>Concurrent B</span><span>…</span></div><p style="font-size:.72rem;color:#70757a;margin-top:.6rem">Illustration : objectif de positionnement</p></div></div></section>
 
