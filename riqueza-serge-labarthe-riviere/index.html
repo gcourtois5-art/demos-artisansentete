@@ -77,14 +77,14 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent)}
 .infos li{list-style:none;display:flex;gap:.8rem;padding:.8rem 0;border-bottom:1px solid #eef0f3;color:var(--gris)}.infos b{color:var(--txt);min-width:110px}.infos li{flex-wrap:wrap}.infos li>*{min-width:0;overflow-wrap:anywhere}
 footer{background:var(--fond);color:rgba(255,255,255,.7);padding:2.2rem 0;font-size:.9rem}
 footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.appel{position:fixed;right:18px;bottom:18px;z-index:30;display:none}
+.btn.appel{position:fixed;right:18px;bottom:18px;left:auto;z-index:30;display:none}
 .wa{position:fixed;left:18px;bottom:18px;z-index:30;width:56px;height:56px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.25);animation:pulse 2.4s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
 .logo img{width:42px;height:42px;border-radius:12px;object-fit:cover;background:#fff}
 .dispo{display:flex;width:fit-content;align-items:center;gap:.5rem;font-size:.85rem;margin-bottom:1rem;opacity:.95}.dispo i{width:9px;height:9px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 4px rgba(61,220,132,.25)}
 .visuel.photo{padding:0;overflow:hidden;aspect-ratio:4/5}.visuel.photo img{width:100%;height:100%;object-fit:cover}
 .note-hero{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.6rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:.5rem 1rem;border-radius:14px;font-size:.9rem}.note-hero b{color:#fbbc04;font-size:1.05rem}
-.galerie{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.8rem}
+.galerie{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.8rem}.galerie figure.entiere{background:#f3f4f6}.galerie figure.entiere img{object-fit:contain}
 .galerie figure{position:relative;overflow:hidden;border-radius:16px;aspect-ratio:4/3;background:#eee}
 .galerie img{width:100%;height:100%;object-fit:cover;transition:transform .6s}.galerie figure:hover img{transform:scale(1.06)}
 .galerie figcaption{position:absolute;right:8px;bottom:6px;font-size:.65rem;color:#fff;text-shadow:0 1px 3px #000;opacity:.8}
@@ -102,29 +102,51 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .parcours{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
 .reveal.vu{opacity:1;transform:none}
-@media (max-width:860px){.contact .wrap{grid-template-columns:minmax(0,1fr)}.liens a:not(.btn){display:none}.hero .wrap,.avis,.pq,.parcours{grid-template-columns:1fr}.visuel{display:none}
-.stats .wrap{grid-template-columns:1fr}.appel{display:inline-flex}section{padding:4rem 0}}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+/* v4 : illustrations, supports, animations */
+.progression{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:50}
+.illu{position:relative;aspect-ratio:1;color:var(--accent);overflow:visible}
+.illu svg{width:100%;height:100%}.illu .halo{fill:color-mix(in srgb,var(--accent) 10%,transparent);stroke:none}
+.illu .trait{stroke-dasharray:900;stroke-dashoffset:900;animation:dessine 2.4s ease forwards}
+.illu .trait:nth-of-type(2){animation-delay:.3s}.illu .trait:nth-of-type(3){animation-delay:.6s}.illu .trait:nth-of-type(4){animation-delay:.9s}.illu .trait:nth-of-type(5){animation-delay:1.1s}.illu .trait:nth-of-type(6){animation-delay:1.3s}
+@keyframes dessine{to{stroke-dashoffset:0}}
+.illu .badge-ico{stroke-width:1.4;opacity:0;animation:apparait .8s 1.6s forwards}@keyframes apparait{to{opacity:1}}
+.puce{position:absolute;background:#fff;color:var(--fond);font-weight:700;font-size:.82rem;padding:.5rem .9rem;border-radius:999px;box-shadow:0 10px 26px rgba(0,0,0,.25);white-space:nowrap;animation:respire 5s ease-in-out infinite}
+.puce::before{content:"✓ ";color:var(--accent);filter:brightness(.75)}
+.puce.p0{top:12%;left:-6%}.puce.p1{top:48%;right:-8%;animation-delay:-1.7s}.puce.p2{bottom:8%;left:4%;animation-delay:-3.3s}
+.mention-illu{position:absolute;right:10px;bottom:6px;font-size:.62rem;opacity:.55;color:#fff;letter-spacing:.04em}
+.illu-pq{display:grid;place-items:center;position:relative;background:linear-gradient(135deg,var(--fond),var(--fond2));color:var(--accent)}
+.illu-pq .mention-illu{color:#fff}
+.contact form{align-self:start;align-content:start}.pq.solo{grid-template-columns:1fr;max-width:760px}
+.supports{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8rem;margin-top:1.4rem}
+.support{background:#fff;border:1px solid #eceef2;border-radius:16px;padding:.6rem}.support img{width:100%;height:auto;object-fit:contain;border-radius:10px;display:block}
+.support figcaption{font-size:.8rem;color:var(--gris);text-align:center;margin-top:.4rem}
+.btn{position:relative;overflow:hidden}.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:brille 4s 2s infinite}
+@keyframes brille{0%,70%{left:-60%}100%{left:130%}}
+@media (max-width:860px){.hero .visuel{display:block;width:min(100%,340px);margin:1rem auto 0}.visuel.photo{aspect-ratio:4/3}.puce{font-size:.72rem}.puce.p0{left:0}.puce.p1{right:0}
+.contact .wrap{grid-template-columns:minmax(0,1fr)}.liens a:not(.btn){display:none}.hero .wrap,.avis,.pq,.parcours{grid-template-columns:1fr}
+.stats .wrap{grid-template-columns:1fr}.btn.appel{display:inline-flex}section{padding:4rem 0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.illu .trait{stroke-dashoffset:0}.illu .badge-ico{opacity:1}}
 </style>
 <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 </head>
 <body>
-<div class="bandeau">Démo réalisée par <b>Artisans en tête</b> pour Riqueza Serge · photos, avis et coordonnées issus de vos pages publiques · textes et engagements : contenu d'exemple à valider</div>
+<div class="progression" id="prog"></div>
+<div class="bandeau">Démo réalisée par <b>Artisans en tête</b> pour Riqueza Serge · coordonnées issus de vos pages publiques · image d'accueil : illustration · textes : contenu d'exemple à valider ensemble</div>
 <header id="haut"><div class="wrap nav">
   <a class="logo" href="#"><span>RS</span>Riqueza Serge</a>
   <nav class="liens"><a href="#services">Prestations</a><a href="#zone">Zone</a><a href="#faq">FAQ</a><a class="btn" href="tel:+33561950337">Appeler</a></nav>
 </div></header>
 
-<div class="hero centre"><div class="wrap">
+<div class="hero"><div class="wrap">
   <div>
     <span class="etiquette">Maçon · Labarthe-Rivière</span>
-    <h1>Votre <em>maçon</em> de confiance à Labarthe-Rivière</h1>
-    <p class="sous">Travail soigné, conseils honnêtes et devis gratuit. Du dépannage à la rénovation complète, on s'occupe de tout, partout dans le Comminges.</p>
+    <h1>L'artisan <em>maçon</em> qui vous répond, à Labarthe-Rivière</h1>
+    <p class="sous">Des conseils clairs, un prix annoncé avant de commencer et un travail fait pour durer. Devis gratuit dans tout le Comminges.</p>
     <div class="ctas"><a class="btn" href="tel:+33561950337">Appeler le 05 61 95 03 37</a><a class="btn ghost" href="#contact">Devis gratuit</a></div>
-    <div class="badges"><span>Devis gratuit</span><span>Artisan local</span><span>Réponse rapide</span></div>
+    <div class="badges"><span>Devis gratuit</span><span>Artisan local</span><span>Sans engagement</span></div>
     <div class="note-hero"><b>5 ★</b>2 avis sur Google</div>
   </div>
-  <div class="visuel"><svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M3 15h18M9 4v5M15 9v6M9 15v5"/></svg></div>
+  <div class="visuel illu"><svg viewBox="0 0 400 400" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="200" cy="210" r="165" class="halo"/><path class="trait" d="M60 200 200 90l140 110"/><path class="trait" d="M90 180v150h220V180"/><path class="trait" d="M180 330v-70h40v70"/><rect class="trait" x="115" y="215" width="45" height="40" rx="3"/><rect class="trait" x="240" y="215" width="45" height="40" rx="3"/><path class="trait" d="M40 330h320"/><g transform="translate(262 62) scale(3.2)" class="badge-ico"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 9h18M3 15h18M9 4v5M15 9v6M9 15v5"/></g></svg><span class="puce p0">Construction &amp; extension</span><span class="puce p1">Rénovation</span><span class="puce p2">Dalles &amp; fondations</span><small class="mention-illu">Illustration</small></div>
 </div></div>
 
 <div class="stats"><div class="wrap">
@@ -145,14 +167,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 
 
 
-
+<section><div class="wrap pq solo"><div class="reveal"><div class="titre"><small>Pourquoi nous choisir</small><h2>Le savoir-faire d'un artisan local</h2></div><ul><li><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7a4 4 0 1 0 3 3l4 4-3 3-4-4a4 4 0 0 1-3-3"/></svg></span><div><b>Un seul interlocuteur</b><p style="color:var(--gris)">Vous parlez directement à l&#x27;artisan, du devis à la fin du chantier.</p></div></li><li><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7a4 4 0 1 0 3 3l4 4-3 3-4-4a4 4 0 0 1-3-3"/></svg></span><div><b>Artisan du Comminges</b><p style="color:var(--gris)">Basé à Labarthe-Rivière, il connaît les maisons et les contraintes locales.</p></div></li><li><span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7a4 4 0 1 0 3 3l4 4-3 3-4-4a4 4 0 0 1-3-3"/></svg></span><div><b>Devis clair et gratuit</b><p style="color:var(--gris)">Un prix détaillé avant de commencer, sans mauvaise surprise.</p></div></li></ul></div></div></section>
 
 <section class="etapes" id="methode"><div class="wrap">
   <div class="titre reveal"><small>Comment ça se passe</small><h2>Un projet simple, en trois étapes</h2></div>
   <div class="grille">
     <div class="etape reveal"><h3>Vous nous contactez</h3><p>Par téléphone ou via le formulaire : décrivez votre besoin en quelques mots.</p></div>
     <div class="etape reveal" style="transition-delay:90ms"><h3>Visite & devis gratuit</h3><p>On se déplace, on vous conseille et vous recevez un devis clair, sans surprise.</p></div>
-    <div class="etape reveal" style="transition-delay:180ms"><h3>Travaux soignés</h3><p>Chantier propre, délais tenus, et finitions vérifiées ensemble à la fin.</p></div>
+    <div class="etape reveal" style="transition-delay:180ms"><h3>Travaux soignés</h3><p>Chantier protégé et finitions vérifiées ensemble à la fin.</p></div>
   </div>
 </div></section>
 
@@ -176,6 +198,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
   <div class="reveal">
     <div class="titre"><small>Contact</small><h2>Parlons de votre projet</h2></div>
     <ul class="infos"><li><b>Téléphone</b><a href="tel:+33561950337">05 61 95 03 37</a></li><li><b>Zone</b>Labarthe-Rivière et tout le Comminges</li><li><b>Google</b><a href="https://maps.google.com/?cid=6456031622087035460&amp;g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQQAhgEIAA" target="_blank" rel="noopener">Voir la fiche Google</a></li></ul>
+    <div class="supports"></div>
   </div>
   <form class="reveal" onsubmit="event.preventDefault();this.querySelector('button').textContent='Démo : formulaire non actif'">
     <input placeholder="Votre nom" required><input type="tel" placeholder="Votre téléphone" required>
@@ -190,7 +213,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 
 
 <script>
-const h=document.getElementById('haut');
+const h=document.getElementById('haut'),pr=document.getElementById('prog');addEventListener('scroll',()=>{pr.style.width=(scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+'%'});
 if(location.search.includes('capture')){document.querySelectorAll('.reveal').forEach(e=>e.classList.add('vu'))}else{addEventListener('scroll',()=>h.classList.toggle('ombre',scrollY>10));
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('vu');io.unobserve(e.target);
 const b=e.target.querySelector('[data-count]');if(b){const fin=+b.dataset.count,deb=fin>1000?fin-25:0,t0=performance.now();
